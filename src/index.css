@@ -51,7 +51,8 @@ code {
 .add-column-title{
   padding: 10px;
   margin-bottom: 20px;
-  width: calc(100% - 20px);
+  width: 100%;
+  box-sizing: border-box;
   border-radius: 5px;
   outline: none;
   border: none;
@@ -125,4 +126,14 @@ code {
 .add-task-btn{
   padding: 10px;
   margin: 0 auto;
+}
+.add-column-box label{
+  display: block;
+  opacity: 0;
+  width: 0%;
+  transition: all 0.5s;
+}
+.add-column-box .active{
+  opacity: 1;
+  width: 100%;
 }

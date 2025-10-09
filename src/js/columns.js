@@ -1,8 +1,7 @@
 import React from "react";
 import AddColumn from "./addColumn";
-import { IoMdAdd } from "react-icons/io";
 
-function Columns({columns, setColumns}) {
+function Columns({columns, setColumns, tasks, setTasks}) {
 
 
     return (
@@ -14,10 +13,17 @@ function Columns({columns, setColumns}) {
                 <div className="column" key={'column-'+i}>
                     <div className="column-header">{e}</div>
                     <ul className="column-body">
-                        {/* tasks.map */}
-                        <li className="task">Task 1</li>
-                        <li className="task">Task 2</li>
+                        {tasks.map((e, j) => 
+                           
+                           
+                           
+                           <li className="task" key={'task-'+i+'-'+j}>
+                                {e.title}
+                            </li>
 
+
+
+                        )}
                         <li className="task">
                             Add new task
                         </li>
@@ -28,7 +34,7 @@ function Columns({columns, setColumns}) {
                 <div className="column-header">
                     Add new column
                 </div>
-                <AddColumn {...{columns, setColumns}}/>
+            <AddColumn {...{columns, setColumns}}/>
             </div>
         </div>
     )

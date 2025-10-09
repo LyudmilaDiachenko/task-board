@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className="App">
-      <Columns {...{columns, setColumns}} />
+      <Columns {...{columns, setColumns, tasks, setTasks}} />
       <AddTask  {...{tasks, setTasks}} />
     </div>
   );

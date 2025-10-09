@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { IoMdAdd } from "react-icons/io";
+
 
 function AddColumn({columns, setColumns}) {
     const [title, setTitle] = useState("")
+    const [showInput, setShowInput] = useState(false)
 
     function AddColumn(){
         if (!title.trim()) return;
@@ -11,16 +14,17 @@ function AddColumn({columns, setColumns}) {
 
     return (
         <div className="add-column-box">
-            <label>
+            <label className={showInput ? 'active' : ''}>
                 <input className="add-column-title"
                     type="text" 
                     placeholder="Title"
                     value={title} 
                     onChange={(e) => setTitle(e.target.value)} 
                 />
-            </label>
-            <div>
                 <button className="add-column-btn" type="button" onClick={AddColumn}>Add column</button>
+            </label>
+            <div className="add-column-box">
+                <div onClick={_ => setShowInput(!showInput)}>+</div> 
             </div>
         </div>
     )
