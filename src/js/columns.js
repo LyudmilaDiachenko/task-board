@@ -1,30 +1,49 @@
 import React from "react";
 import AddColumn from "./addColumn";
 
-function Columns({columns, setColumns, tasks, setTasks}) {
-
+function Columns({columns, setColumns, tasks, columnToCreateTask, setColumnToCreateTask}) {
 
     return (
         <div className="columns">
             <div className="column">
                 <div className="column-header">Backlog</div>
-            </div>
-            {columns.map((e, i) => 
-                <div className="column" key={'column-'+i}>
-                    <div className="column-header">{e}</div>
-                    <ul className="column-body">
-                        {tasks.map((e, j) => 
-                           
-                           
-                           
-                           <li className="task" key={'task-'+i+'-'+j}>
-                                {e.title}
+                <ul className="column-body">
+                    {tasks
+                        .filter((t) => !columns.includes(t.status))
+                        .map((e, j) => 
+                            <li className="task" key={'task-'+0+'-'+j}>
+                                <p>{e.title}</p>
+                                <p>{e.description}</p>
+                                <p>{e.assignee}</p>
+                                <p>{e.deadline}</p>
                             </li>
-
-
-
+                        )
+                    }
+                    <li className="task"
+                            onClick={_ => setColumnToCreateTask('backlog')}
+                    >
+                            Add new task
+                    </li>
+                </ul>
+            </div>
+            
+            {columns.map((column, i) => 
+                <div className="column" key={'column-'+i}>
+                    <div className="column-header">{column}</div>
+                    <ul className="column-body">
+                        {tasks
+                        .filter((t) => t.status === column)
+                        .map((e, j) => 
+                           <li className="task" key={'task-'+i+'-'+j}>
+                                <p>{e.title}</p>
+                                <p>{e.description}</p>
+                                <p>{e.assignee}</p>
+                                <p>{e.deadline}</p>
+                            </li>
                         )}
-                        <li className="task">
+                        <li className="task"
+                            onClick={_ => setColumnToCreateTask(column)}
+                        >
                             Add new task
                         </li>
                     </ul>

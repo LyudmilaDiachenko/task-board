@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 
-function AddTask({tasks, setTasks}) {
+function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask}) {
     const [task, setTask] = useState({})
 
     return (
+        columnToCreateTask &&
         <div>
             <form className="add-task-form">
                 <label className="add-task-lable">
@@ -40,7 +41,13 @@ function AddTask({tasks, setTasks}) {
                 <button 
                     className="add-task-btn" 
                     type="button" 
-                    onClick={_ => setTasks([...tasks, task]) || setTask({})}
+                    onClick={_ => 
+                        {
+                            setTasks([...tasks, {...task, status: columnToCreateTask}]);
+                            setTask({});
+                            setColumnToCreateTask(false);
+                        }
+                    }
                 >
                     Save Task
                 </button>

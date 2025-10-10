@@ -4,14 +4,15 @@ import AddTask from "./js/addTask";
 
 function App() {
   const [tasks, setTasks] = useState([])
+  const [columnToCreateTask, setColumnToCreateTask] = useState(false);
   const [columns, setColumns] = useState(
     ['Pending', 'In progress', 'Done']
   )
-
+  console.log(columnToCreateTask)
   return (
     <div className="App">
-      <Columns {...{columns, setColumns, tasks, setTasks}} />
-      <AddTask  {...{tasks, setTasks}} />
+      <Columns {...{columns, setColumns, tasks, setTasks, columnToCreateTask, setColumnToCreateTask}} />
+      <AddTask  {...{tasks, setTasks, columnToCreateTask, setColumnToCreateTask}} />
     </div>
   );
 }
