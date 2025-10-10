@@ -3,15 +3,25 @@ import React, {useState} from "react";
             
 function Column({column, tasks, setColumnToCreateTask}) {
     const [isDrag, setIsDrag] = useState(false)
+    const [isHover, setIsHover] = useState(false)
 
     function dragStart(eve){
         eve.dataTransfer.setData('text/plain', column)
         setIsDrag(true)
     }    
 
-    function dragEnd(eve){
+    function dragEnd(){
         setIsDrag(false)
     }  
+
+    function dragOver(eve){
+        setIsHover(true)
+        // eve.preventDefault();
+    }
+
+    function dragLeave(eve){
+        setIsHover(false)
+    }
 
     return (
         <>
@@ -41,7 +51,12 @@ function Column({column, tasks, setColumnToCreateTask}) {
                     </li>
                 </ul>
             </div>
-            <div className="column-dropzone" onDrop={_=>_}></div>
+            <div 
+                className={`column-dropzone ${isHover ? "hover" : ""}`} 
+                onDragOver={dragOver}
+                onDragLeave={dragLeave}
+                onDrop={_=>_}
+            ></div>
         </>
     )
 }

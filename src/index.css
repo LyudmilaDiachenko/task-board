@@ -141,6 +141,7 @@ code {
 .column-dropzone{
   border-radius: 5px;
   width: 40px;
+  margin: 0;
   box-sizing: border-box;
   border: none;
   opacity: 0;
@@ -150,6 +151,7 @@ code {
   width: 30vw;
   border: 3px dashed lightgray;
   opacity: 1;
+  margin: 0 20px;
 }
 .dragged{
   opacity: 0.5;
