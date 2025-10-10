@@ -1,11 +1,27 @@
-import React from "react";
+import React, {useState} from "react";
 
             
 function Column({column, tasks, setColumnToCreateTask}) {
-        
+    const [isDrag, setIsDrag] = useState(false)
+
+    function dragStart(eve){
+        eve.dataTransfer.setData('text/plain', column)
+        setIsDrag(true)
+    }    
+
+    function dragEnd(eve){
+        setIsDrag(false)
+    }  
+
     return (
         <>
-            <div className="column" key={'column-'+column} draggable={true}>
+            <div 
+                key={'column-'+column} 
+                className={`column ${isDrag ? "dragged" : ""}`} 
+                draggable={true} 
+                onDragStart={dragStart}
+                onDragEnd={dragEnd}
+            >
                 <div className="column-header">{column}</div>
                 <ul className="column-body">
                     {tasks

@@ -151,3 +151,6 @@ code {
   border: 3px dashed lightgray;
   opacity: 1;
 }
+.dragged{
+  opacity: 0.5;
+}
