@@ -8,7 +8,7 @@ function App() {
   const [columns, setColumns] = useState(
     ['Pending', 'In progress', 'Done']
   )
-  console.log(columnToCreateTask)
+
   return (
     <div className="App">
       <Columns {...{columns, setColumns, tasks, setTasks, columnToCreateTask, setColumnToCreateTask}} />

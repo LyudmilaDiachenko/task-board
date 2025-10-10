@@ -26,7 +26,7 @@ code {
 }
 .columns{
   display: flex;
-  gap: 20px;
+  /* gap: 20px; */
 }
 .column{
   background-color: #ededed;
@@ -34,6 +34,7 @@ code {
   width: 30vw;
   padding: 20px;
   box-sizing: border-box;
+  user-select: none;
 }
 .column-header{
   padding: 0 0 20px 0;
@@ -136,4 +137,17 @@ code {
 .add-column-box .active{
   opacity: 1;
   width: 100%;
+}
+.column-dropzone{
+  border-radius: 5px;
+  width: 40px;
+  box-sizing: border-box;
+  border: none;
+  opacity: 0;
+  transition: all 0.5s;
+}
+.column-dropzone.hover{
+  width: 30vw;
+  border: 3px dashed lightgray;
+  opacity: 1;
 }
