@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
             
-function Column({column, tasks, setColumnToCreateTask}) {
+function Column({column, columns, setColumns, tasks, setColumnToCreateTask}) {
     const [isDrag, setIsDrag] = useState(false)
     const [isHover, setIsHover] = useState(false)
 
@@ -16,11 +16,31 @@ function Column({column, tasks, setColumnToCreateTask}) {
 
     function dragOver(eve){
         setIsHover(true)
-        // eve.preventDefault();
+        eve.preventDefault();
     }
 
-    function dragLeave(eve){
+    function dragLeave(){
         setIsHover(false)
+    }
+
+    function drop(eve){
+        const columnToSort = eve.dataTransfer.getData('text/plain')
+        let newColumns = []
+
+        columns.forEach((c, i) => {
+            if(i === 0 && column === 'Backlog'){
+                newColumns.push(columnToSort)
+            }
+            if (c !== columnToSort){
+                newColumns.push(c)
+            }
+            if(c === column){
+                newColumns.push(columnToSort)
+            }
+        })
+
+        setIsHover(false)
+        setColumns([...newColumns])
     }
 
     return (
@@ -55,7 +75,7 @@ function Column({column, tasks, setColumnToCreateTask}) {
                 className={`column-dropzone ${isHover ? "hover" : ""}`} 
                 onDragOver={dragOver}
                 onDragLeave={dragLeave}
-                onDrop={_=>_}
+                onDrop={drop}
             ></div>
         </>
     )

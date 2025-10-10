@@ -6,9 +6,9 @@ function Columns({columns, setColumns, tasks, columnToCreateTask, setColumnToCre
 
     return (
         <div className="columns">
-            <Column key={'column-backlog'} column={"Backlog"} {...{tasks, setColumnToCreateTask}} />
+            <Column key={'column-backlog'} column={"Backlog"} {...{columns, setColumns, tasks, setColumnToCreateTask}} />
             {columns.map(column => 
-                <Column key={'column-'+column} {...{column, tasks, setColumnToCreateTask}} />
+                <Column key={'column-'+column} {...{column, columns, setColumns, tasks, setColumnToCreateTask}} />
             )}   
             <div className="column">
                 <div className="column-header">Add new column</div>
