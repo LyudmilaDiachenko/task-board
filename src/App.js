@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Header from "./js/header";
 import Columns from "./js/columns";
 import AddTask from "./js/addTask";
 
@@ -11,6 +12,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header {...{columns, tasks, setTasks}}/>
       <Columns {...{columns, setColumns, tasks, setTasks, columnToCreateTask, setColumnToCreateTask}} />
       <AddTask  {...{tasks, setTasks, columnToCreateTask, setColumnToCreateTask}} />
     </div>

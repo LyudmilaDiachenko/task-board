@@ -31,7 +31,7 @@ code {
 .column{
   background-color: #ededed;
   border-radius: 5px;
-  width: 30vw;
+  width: 20vw;
   padding: 20px;
   box-sizing: border-box;
   user-select: none;
@@ -145,14 +145,18 @@ code {
   box-sizing: border-box;
   border: none;
   opacity: 0;
-  transition: all 0.5s;
+  transition: all 0.1s;
 }
 .column-dropzone.hover{
-  width: 30vw;
+  width: 20vw;
   border: 3px dashed lightgray;
   opacity: 1;
   margin: 0 20px;
 }
 .dragged{
   opacity: 0.5;
+}
+.refresh button{
+  font-size: 25px;
+  padding: 3px 5px 3px 8px;
 }
