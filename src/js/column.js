@@ -59,9 +59,9 @@ function Column({column, columns, setColumns, tasks, setColumnToCreateTask}) {
                     .map((e, j) => 
                         <li className="task" key={'task-'+column+'-'+j}>
                             <p>{e.title}</p>
-                            <p>{e.description}</p>
-                            <p>{e.assignee}</p>
-                            <p>{e.deadline}</p>
+                            <p className="task-description">{e.description}</p>
+                            <p className="task-assignee">{e.assignee}</p>
+                            <p className="task-deadline">🕒 {e.deadline}</p>
                         </li>
                     )}
                     <li className="task"

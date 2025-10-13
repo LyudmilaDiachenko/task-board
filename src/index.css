@@ -45,6 +45,22 @@ code {
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 20px;
+  line-height: 1.4em;
+}
+.task-description{
+  background-color: #ffdac7;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+.task-assignee{
+  background-color: #e1e1c8;
+  display: inline;
+  padding: 5px;
+  border-radius: 5px;
+}
+.task-deadline{
+  margin-top: 15px;
 }
 .add-column-box{
   text-align: center;
