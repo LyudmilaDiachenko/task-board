@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask}) {
+function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask, users}) {
     const [task, setTask] = useState({})
 
     return (
@@ -27,15 +27,15 @@ function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask}) {
                 </label>
                 <div className="select-date-box">
                     <label>
-                        <select className="add-task-select" onChange={e => setTask({...task, assignee: e.target.value})}>
-                            <option disabled checked>Select assignee</option>
-                            <option value="anna">Anna Smith</option>
-                            <option value="john">John Doe</option>
-                            <option value="emma">Emma Johnson</option>
+                        <select required={true} className="add-task-select" onChange={e => setTask({...task, user: users[e.target.value]})}>
+                            <option checked>Select assignee</option>
+                            {users.map((user, i) => {
+                                return <option key={'assignee-select-'+i} value={i}>{user.name}</option>
+                            })}
                         </select>
                     </label>
                     <label>
-                        <input className="add-task-date" type="date"  onChange={e => setTask({...task, deadline: e.target.value})} />
+                        <input className="add-task-date" type="date" onChange={e => setTask({...task, deadline: new Date(e.target.value).toISOString().slice(0, 10)})} />
                     </label>
                 </div>
                 <button 
@@ -43,7 +43,7 @@ function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask}) {
                     type="button" 
                     onClick={_ => 
                         {
-                            setTasks([...tasks, {...task, status: columnToCreateTask}]);
+                            setTasks([...tasks, {...task, deadline: task.deadline || new Date().toISOString().slice(0, 10), status: columnToCreateTask}]);
                             setTask({});
                             setColumnToCreateTask(false);
                         }

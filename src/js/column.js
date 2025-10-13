@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
             
-function Column({column, columns, setColumns, tasks, setColumnToCreateTask}) {
+function Column({column, columns, setColumns, tasks, setColumnToCreateTask, users}) {
     const [isDrag, setIsDrag] = useState(false)
     const [isHover, setIsHover] = useState(false)
 
@@ -43,7 +43,7 @@ function Column({column, columns, setColumns, tasks, setColumnToCreateTask}) {
         setColumns([...newColumns])
     }
 
-    return (
+    return (        
         <>
             <div 
                 key={'column-'+column} 
@@ -58,9 +58,12 @@ function Column({column, columns, setColumns, tasks, setColumnToCreateTask}) {
                     .filter((t) => t.status === column)
                     .map((e, j) => 
                         <li className="task" key={'task-'+column+'-'+j}>
-                            <p>{e.title}</p>
-                            <p className="task-description">{e.description}</p>
-                            <p className="task-assignee">{e.assignee}</p>
+                            <p className="task-description">{e.title}</p>
+                    
+                            <p className="task-assignee">{e.user?.name}</p>
+                            <img src={e.user?.avatar} alt={e.user?.name} />
+
+
                             <p className="task-deadline">🕒 {e.deadline}</p>
                         </li>
                     )}
