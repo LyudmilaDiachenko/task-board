@@ -62,7 +62,7 @@ function Column({column, columns, setColumns, tasks, setColumnToCreateTask, user
                             <p className="task-assignee">{e.status}</p>
                         <div className="task-box">
                             <p className="task-deadline">🕒 {e.deadline}</p>
-                            <img src={e.user?.avatar} alt={e.user?.name} className="task-image"/>
+                            <img src={e.user?.avatar} alt={e.user?.name} className="task-image" />
                         </div>
                         </li>
                     )}

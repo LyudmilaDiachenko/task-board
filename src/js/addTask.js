@@ -10,7 +10,7 @@ function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask, us
             <form className="add-task-form">
                 <div className="close-box">
                     <div className="close-btn">
-                        <IoClose onClick={_ => setColumnToCreateTask(false)}/>
+                        <IoClose onClick={_ => setColumnToCreateTask(false)} />
                     </div>
                     <div>
                         <label className="add-task-lable">

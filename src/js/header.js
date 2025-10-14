@@ -1,24 +1,17 @@
 import React from "react";
 import CheckNewTask from "./checkNewTask";
+import Users from "./users";
+
 
 function Header({columns, tasks, setTasks, users}) {
     return(
         <div className="users-box">
-            <CheckNewTask {...{columns, tasks, setTasks, users}}/>
-            
-            
-            {users.map((user, i) => {
-                return (
-                    <div key={'header-user-'+i}>
-                        {/* <span className="user-name">{user.name}</span> */}
-                        <img src={user.avatar} className="user-image"/>
-                    </div>
-                )
-            })}
-            
+            <CheckNewTask {...{columns, tasks, setTasks, users}} />
+
+
 
             {/* <Search /> */}
-            {/* <Users /> */}
+            <Users {...{users}} />
         </div>
     )
 }
