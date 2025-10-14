@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 function CheckNewTask({columns, tasks, setTasks, users}) {
   let example = ['Setup project structure.', 'Create main page layout.', 'Add user login.', 'Add form validation.', 'Make layout responsive.', 'Test all features.', 'Optimize performance.', 'Write API docs.', 'Add error logging.', 'Add analytics.', 'Create color palette.', 'Design icons.', 'Draw illustrations.', 'Make social banner.', 'Redesign logo.', 'Brainstorm new ideas.', 'Update sprint plan.', 'Check deadlines.', 'Write progress report.', 'Team retrospective']
+
+  useEffect(_ => {
+    Array(15).fill().map(_=> getNewTask())
+  }, [])
 
   function getNewTask(){
     Math.random() > 0.2 && tasks.push({
