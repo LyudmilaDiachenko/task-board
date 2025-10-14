@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { IoClose } from "react-icons/io5";
 
 function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask, users}) {
     const [task, setTask] = useState({})
@@ -7,15 +8,22 @@ function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask, us
         columnToCreateTask &&
         <div>
             <form className="add-task-form">
-                <label className="add-task-lable">
-                    <input
-                        className="add-task-input"
-                        type="text" 
-                        placeholder="Title" 
-                        value={task?.title || ''} 
-                        onChange={e => setTask({...task, title: e.target.value})}
-                    />
-                </label>
+                <div className="close-box">
+                    <div className="close-btn">
+                        <IoClose onClick={_ => setColumnToCreateTask(false)}/>
+                    </div>
+                    <div>
+                        <label className="add-task-lable">
+                            <input
+                                className="add-task-input"
+                                type="text" 
+                                placeholder="Title" 
+                                value={task?.title || ''} 
+                                onChange={e => setTask({...task, title: e.target.value})}
+                                />
+                        </label>
+                    </div>
+                </div>
                 <label className="add-task-lable">
                     <textarea 
                         className="add-task-textarea"
@@ -52,7 +60,7 @@ function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask, us
                     Save Task
                 </button>
             </form>
-        </div>
+        </div> 
     )
 }
 

@@ -133,6 +133,13 @@ code {
   overflow-y: auto;
   z-index: 1000;
 }
+.close-box{
+  width: 100%;
+  margin-bottom: 20px;
+}
+.close-btn{
+  float: right;
+}
 .add-task-lable{
   width: 100%;
   margin-bottom: 20px;
