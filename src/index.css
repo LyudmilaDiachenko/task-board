@@ -18,15 +18,41 @@ code {
 }
 .App{
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   padding: 20px;
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
   overflow-y: hidden;
+  position: relative;
+}
+.users-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 0 20px;
+  position: fixed;
+  top: 30px;
+  right: 20px;
+}
+.user-image{
+  margin-left: -5px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #ededed;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.user-image img:first-child {
+  margin-left: 0;
 }
 .columns{
   display: flex;
+  height: 85vh;
   /* gap: 20px; */
+  position: relative;
+  top: 10%;
 }
 .column{
   background-color: #ededed;
@@ -35,6 +61,7 @@ code {
   padding: 20px;
   box-sizing: border-box;
   user-select: none;
+  overflow-x: hidden;
 }
 .column-header{
   padding: 0 0 20px 0;
@@ -59,6 +86,16 @@ code {
   display: inline;
   padding: 5px;
   border-radius: 5px;
+}
+.task-box{
+  display: flex;
+  justify-content: space-between;
+}
+.task-image{
+  width: 40px;
+  border-radius: 50%;
+  background-color: #ededed;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 .task-deadline{
   margin-top: 15px;
@@ -173,7 +210,8 @@ code {
 .dragged{
   opacity: 0.5;
 }
-.refresh button{
+.refresh-btn{
   font-size: 25px;
   padding: 3px 5px 3px 8px;
+  margin-right: 20px;
 }

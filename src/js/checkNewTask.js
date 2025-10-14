@@ -13,10 +13,10 @@ function CheckNewTask({columns, tasks, setTasks, users}) {
     })
     setTasks([...tasks])
   }
-  
+
   return(
       <div className='refresh'>
-          <button onClick={getNewTask}>⟳</button>
+          <button onClick={getNewTask} className='refresh-btn'>⟳</button>
           {/* <button onClick={getNewTask}>🔄</button> */}
           {/* <button onClick={getNewTask}>↻</button> */}
       </div>

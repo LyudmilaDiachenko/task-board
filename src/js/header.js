@@ -3,16 +3,19 @@ import CheckNewTask from "./checkNewTask";
 
 function Header({columns, tasks, setTasks, users}) {
     return(
-        <div>
+        <div className="users-box">
             <CheckNewTask {...{columns, tasks, setTasks, users}}/>
+            
+            
             {users.map((user, i) => {
                 return (
                     <div key={'header-user-'+i}>
-                        {user.name}
-                        <img src={user.avatar} />
+                        {/* <span className="user-name">{user.name}</span> */}
+                        <img src={user.avatar} className="user-image"/>
                     </div>
                 )
             })}
+            
 
             {/* <Search /> */}
             {/* <Users /> */}

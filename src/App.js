@@ -11,7 +11,6 @@ function App() {
       const name = exampleNames.pop() 
       return {
         name: name,
-        // userAvatar: `https://i.pravatar.cc/32?img=`+Math.ceil(Math.random()*70),
         avatar: "https://api.dicebear.com/9.x/personas/svg?seed="+name
       }
     })

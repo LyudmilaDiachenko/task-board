@@ -58,13 +58,12 @@ function Column({column, columns, setColumns, tasks, setColumnToCreateTask, user
                     .filter((t) => t.status === column)
                     .map((e, j) => 
                         <li className="task" key={'task-'+column+'-'+j}>
-                            <p className="task-description">{e.title}</p>
-                    
-                            <p className="task-assignee">{e.user?.name}</p>
-                            <img src={e.user?.avatar} alt={e.user?.name} />
-
-
+                            <p className="task-description">{e.title}</p>                    
+                            <p className="task-assignee">{e.status}</p>
+                        <div className="task-box">
                             <p className="task-deadline">🕒 {e.deadline}</p>
+                            <img src={e.user?.avatar} alt={e.user?.name} className="task-image"/>
+                        </div>
                         </li>
                     )}
                     <li className="task"
