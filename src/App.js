@@ -16,6 +16,7 @@ function App() {
     })
   )
   const [tasks, setTasks] = useState([])
+  const [taskToEdit, setTaskToEdit] = useState(null)
   const [columnToCreateTask, setColumnToCreateTask] = useState(false);
   const [columns, setColumns] = useState(
     ['Pending', 'In progress', 'Done']
@@ -24,8 +25,8 @@ function App() {
   return (
     <div className="App">
       <Header {...{columns, tasks, setTasks, users}}/>
-      <Columns {...{columns, setColumns, tasks, setTasks, setColumnToCreateTask, users}} />
-      <AddTask  {...{tasks, setTasks, columnToCreateTask, setColumnToCreateTask, users}} />
+      <Columns {...{columns, setColumns, tasks, setTasks, setColumnToCreateTask, users, taskToEdit, setTaskToEdit}} />
+      <AddTask  {...{tasks, setTasks, columnToCreateTask, setColumnToCreateTask, users, taskToEdit, setTaskToEdit}} />
     </div>
   );
 }
