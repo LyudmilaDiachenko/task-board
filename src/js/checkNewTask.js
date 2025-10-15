@@ -4,7 +4,7 @@ function CheckNewTask({columns, tasks, setTasks, users}) {
   let example = ['Setup project structure.', 'Create main page layout.', 'Add user login.', 'Add form validation.', 'Make layout responsive.', 'Test all features.', 'Optimize performance.', 'Write API docs.', 'Add error logging.', 'Add analytics.', 'Create color palette.', 'Design icons.', 'Draw illustrations.', 'Make social banner.', 'Redesign logo.', 'Brainstorm new ideas.', 'Update sprint plan.', 'Check deadlines.', 'Write progress report.', 'Team retrospective']
 
   useEffect(_ => {
-    Array(15).fill().map(_=> getNewTask())
+    Array(10).fill().map(_=> getNewTask())
   }, [])
 
   function getNewTask(){
@@ -13,7 +13,7 @@ function CheckNewTask({columns, tasks, setTasks, users}) {
       title: example[Math.floor(Math.random() * example.length)],
       description: example[Math.floor(Math.random() * example.length)],
       status: [...columns, 'Backlog'][Math.floor(Math.random() * (columns.length + 1))],
-      deadline: new Date(new Date().setDate(new Date().getDate() + 3 + Math.random() * 30)).toLocaleDateString() 
+      deadline: new Date(new Date().setDate(new Date().getDate() + 3 + Math.random() * 30)).toISOString().slice(0, 10)
     })
     setTasks([...tasks])
   }

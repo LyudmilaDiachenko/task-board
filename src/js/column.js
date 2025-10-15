@@ -67,8 +67,8 @@ function Column({column, columns, setColumns, tasks, setColumnToCreateTask, user
                             <p className="task-description">{e.title}</p>                    
                             <p className="task-assignee">{e.status}</p>
                             <div className="task-box">
-                                <p className="task-deadline">🕒 {e.deadline}</p>
-                                <img src={e.user?.avatar} alt={e.user?.name} title={e.user?.name} className="task-image" />
+                                <p className="task-deadline">🕒 {e?.deadline?.slice(0, 10)}</p>
+                                <img src={e?.user?.avatar} alt={e?.user?.name} title={e?.user?.name} className="task-image" />
                             </div>
                         </li>
                     )}

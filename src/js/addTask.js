@@ -5,9 +5,11 @@ function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask, us
     const [task, setTask] = useState(taskToEdit || {})
     
     useEffect(_=> {
-        taskToEdit && setTask(taskToEdit)
-    }, [])
-    
+        !Object.keys(task).length && taskToEdit && setTask(taskToEdit)
+    }, [task, taskToEdit])
+
+    console.log('addtask', task, taskToEdit)
+
     return (
         (taskToEdit || columnToCreateTask) &&
         <div>
@@ -22,7 +24,7 @@ function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask, us
                                 className="add-task-input"
                                 type="text" 
                                 placeholder="Title" 
-                                value={taskToEdit?.title || task?.title || ''} 
+                                value={task?.title || ''} 
                                 onChange={e => setTask({...task, title: e.target.value})}
                                 />
                         </label>
@@ -32,7 +34,7 @@ function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask, us
                     <textarea 
                         className="add-task-textarea"
                         placeholder="Description"
-                        value={taskToEdit?.description || task?.description || ''}
+                        value={task?.description || ''}
                         onChange={e => setTask({...task, description: e.target.value})}
                     >
                     </textarea>
@@ -43,7 +45,7 @@ function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask, us
                             required={true} 
                             className="add-task-select" 
                             onChange={e => setTask({...task, user: users[e.target.value]})}
-                            value={users.indexOf(taskToEdit?.user || task?.user)}
+                            value={users.indexOf(task?.user)}
                         >
                             <option checked>Select assignee</option>
                             {users.map((user, i) => {
@@ -52,7 +54,16 @@ function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask, us
                         </select>
                     </label>
                     <label>
-                        <input value={taskToEdit?.deadline || task?.deadline} className="add-task-date" type="date" onChange={e => setTask({...task, deadline: new Date(e.target.value).toISOString().slice(0, 10)})} />
+                        <input 
+                            value={task?.deadline || new Date().toISOString().slice(0, 10)} 
+                            className="add-task-date" type="date" 
+                            onChange={e => setTask(
+                                {
+                                    ...task, 
+                                    deadline: new Date(e.target.value).toISOString().slice(0, 10)
+                                }
+                            )}
+                        />
                     </label>
                 </div>
                 <button 
@@ -61,10 +72,13 @@ function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask, us
                     onClick={_ => 
                         {   
                             taskToEdit?
-                            setTasks([...tasks]):
+                            (  
+                                setTasks([...tasks.filter(e => e!==taskToEdit), {...task}])
+                            ):
                             setTasks([...tasks, {...task, deadline: task.deadline || new Date().toISOString().slice(0, 10), status: columnToCreateTask}]);
-                            setTask({});
                             setColumnToCreateTask(false);
+                            setTaskToEdit(null)
+                            setTask({});
                         }
                     }
                 >
