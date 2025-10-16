@@ -8,7 +8,7 @@ function Columns({columns, setColumns, tasks, setColumnToCreateTask, users, task
         <div className="columns">
             <Column key={'column-backlog'} column={"Backlog"} {...{columns, setColumns, tasks, setColumnToCreateTask, users, taskToEdit, setTaskToEdit, searchRequest, setSearchRequest}} />
             {columns.map(column => 
-                <Column key={'column-'+column} {...{column, columns, setColumns, tasks, setColumnToCreateTask, users, taskToEdit, setTaskToEdit, searchRequest, setSearchRequest}} />
+                <Column key={'column-'+column} {...{column, columns, setColumns, tasks, setColumnToCreateTask, users, taskToEdit, setTaskToEdit, searchRequest, setSearchRequest, draggable: true}} />
             )}   
             <div className="column">
                 <div className="column-header">Add new column</div>

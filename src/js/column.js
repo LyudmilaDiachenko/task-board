@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
             
-function Column({column, columns, setColumns, tasks, setColumnToCreateTask, users, setTaskToEdit, searchRequest, setSearchRequest}) {
+function Column({column, columns, setColumns, tasks, setColumnToCreateTask, users, setTaskToEdit, searchRequest, setSearchRequest, draggable}) {
     const [isDrag, setIsDrag] = useState(false)
     const [isHover, setIsHover] = useState(false)
 
@@ -56,7 +56,7 @@ function Column({column, columns, setColumns, tasks, setColumnToCreateTask, user
             <div 
                 key={'column-'+column} 
                 className={`column ${isDrag ? "dragged" : ""}`} 
-                draggable={true} 
+                draggable={draggable} 
                 onDragStart={dragStart}
                 onDragEnd={dragEnd}
             >
