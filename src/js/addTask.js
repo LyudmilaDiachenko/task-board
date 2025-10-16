@@ -8,8 +8,6 @@ function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask, us
         !Object.keys(task).length && taskToEdit && setTask(taskToEdit)
     }, [task, taskToEdit])
 
-    console.log('addtask', task, taskToEdit)
-
     return (
         (taskToEdit || columnToCreateTask) &&
         <div>

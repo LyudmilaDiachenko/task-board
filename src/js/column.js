@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
             
-function Column({column, columns, setColumns, tasks, setColumnToCreateTask, users, setTaskToEdit}) {
+function Column({column, columns, setColumns, tasks, setColumnToCreateTask, users, setTaskToEdit, searchRequest, setSearchRequest}) {
     const [isDrag, setIsDrag] = useState(false)
     const [isHover, setIsHover] = useState(false)
 
@@ -43,6 +43,14 @@ function Column({column, columns, setColumns, tasks, setColumnToCreateTask, user
         setColumns([...newColumns])
     }
 
+    const filteredTasks = tasks
+    .filter((t) => t.status === column)
+    .filter(e => {
+        return e?.title?.toLowerCase()?.includes(searchRequest?.toLowerCase()) ||
+                e?.description?.toLowerCase()?.includes(searchRequest?.toLowerCase()) ||
+                e?.user?.name?.toLowerCase()?.includes(searchRequest?.toLowerCase())
+    })
+
     return (        
         <>
             <div 
@@ -54,14 +62,11 @@ function Column({column, columns, setColumns, tasks, setColumnToCreateTask, user
             >
                 <div className="column-header">{column}</div>
                 <ul className="column-body">
-                    {tasks
-                    .filter((t) => t.status === column)
-                    .map((e, j) => 
+                    {filteredTasks.map((e, j) => 
                         <li className="task" 
                             key={'task-'+column+'-'+j} 
                             onClick={() => {
                                 setTaskToEdit(e)
-                                console.log("setTaskToEdit", e)    
                             }}
                         >
                             <p className="task-description">{e.title}</p>                    
@@ -71,7 +76,7 @@ function Column({column, columns, setColumns, tasks, setColumnToCreateTask, user
                                 <img src={e?.user?.avatar} alt={e?.user?.name} title={e?.user?.name} className="task-image" />
                             </div>
                         </li>
-                    )}
+                    )} 
                     <li className="task"
                         onClick={_ => 
                             setColumnToCreateTask(column)
