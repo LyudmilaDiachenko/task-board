@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Header from "./js/header";
 import Columns from "./js/columns";
 import AddTask from "./js/addTask";
-import Search from "./js/search";
 
 let exampleNames = ['Emily Brown', 'James Smith', 'Sophia Johnson', 'Daniel White', 'Emma Taylor', 'Michael Martin', 'Olivia Harris', 'David Anderson', 'John Brown', 'Sarah Jackson']
 
@@ -28,10 +27,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <Search {...{searchRequest, setSearchRequest}}/>
-      </div>
-      <Header {...{columns, tasks, setTasks, users}}/>
+      <Header {...{columns, tasks, setTasks, users, searchRequest, setSearchRequest}}/>
       <Columns {...{columns, setColumns, tasks, setTasks, setColumnToCreateTask, users, taskToEdit, setTaskToEdit, searchRequest, setSearchRequest}} />
       <AddTask  {...{tasks, setTasks, columnToCreateTask, setColumnToCreateTask, users, taskToEdit, setTaskToEdit}} />
     </div>
