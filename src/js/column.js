@@ -2,21 +2,27 @@ import React, {useState} from "react";
 import Task from "./task"
 
             
-function Column({column, columns, setColumns, tasks, setColumnToCreateTask, users, setTaskToEdit, searchRequest, setSearchRequest, draggable}) {
+function Column({column, columns, setColumns, tasks, setColumnToCreateTask, users, setTaskToEdit, searchRequest, setSearchRequest, draggable, itemToDrag, setItemToDrag}) {
     const [isDrag, setIsDrag] = useState(false)
     const [isHover, setIsHover] = useState(false)
 
     function dragStart(eve){
         eve.dataTransfer.setData('text/plain', column)
+        setItemToDrag('column')
         setIsDrag(true)
     }
 
     function dragEnd(){
+        setItemToDrag(false)
         setIsDrag(false)
     }  
 
+    function dragEnter(){
+        if (itemToDrag === 'column') {
+            setIsHover(true)
+        }
+    }
     function dragOver(eve){
-        setIsHover(true)
         eve.preventDefault();
     }
 
@@ -26,6 +32,7 @@ function Column({column, columns, setColumns, tasks, setColumnToCreateTask, user
 
     function drop(eve){
         const columnToSort = eve.dataTransfer.getData('text/plain')
+        console.log(columnToSort)
         let newColumns = []
 
         columns.forEach((c, i) => {
@@ -64,7 +71,7 @@ function Column({column, columns, setColumns, tasks, setColumnToCreateTask, user
                 <div className="column-header">{column}</div>
                 <ul className="column-body">
                     {filteredTasks.map((task, j) => 
-                        <Task key={'task-'+j} {...{setTaskToEdit, task}} />
+                        <Task key={'task-'+j} {...{tasks, task, setTaskToEdit, itemToDrag, setItemToDrag}} />
                     )} 
                     <li className="task"
                         onClick={_ => 
@@ -77,6 +84,7 @@ function Column({column, columns, setColumns, tasks, setColumnToCreateTask, user
             </div>
             <div 
                 className={`column-dropzone ${isHover ? "hover" : ""}`} 
+                onDragEnter={dragEnter}
                 onDragOver={dragOver}
                 onDragLeave={dragLeave}
                 onDrop={drop}
