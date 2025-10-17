@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Task from "./task"
 
             
-function Column({column, columns, setColumns, tasks, setColumnToCreateTask, users, setTaskToEdit, searchRequest, setSearchRequest, draggable, itemToDrag, setItemToDrag}) {
+function Column({column, columns, setColumns, tasks, setTasks, setColumnToCreateTask, users, setTaskToEdit, searchRequest, setSearchRequest, draggable, itemToDrag, setItemToDrag}) {
     const [isDrag, setIsDrag] = useState(false)
     const [isHover, setIsHover] = useState(false)
 
@@ -71,8 +71,9 @@ function Column({column, columns, setColumns, tasks, setColumnToCreateTask, user
                 <div className="column-header">{column}</div>
                 <ul className="column-body">
                     {filteredTasks.map((task, j) => 
-                        <Task key={'task-'+j} {...{tasks, task, setTaskToEdit, itemToDrag, setItemToDrag}} />
+                        <Task key={'task-'+j} {...{tasks, setTasks, task, setTaskToEdit, itemToDrag, setItemToDrag}} />
                     )} 
+                    
                     <li className="task"
                         onClick={_ => 
                             setColumnToCreateTask(column)

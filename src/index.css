@@ -68,9 +68,24 @@ code {
   background-color: white;
   padding: 10px;
   border-radius: 5px;
-  margin-bottom: 20px;
   line-height: 1.4em;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.task-dropzone{
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 0;
+  margin: 0;
+  height: 20px;
+  border: none;
+  opacity: 0;
+  transition: all 0.1s;
+}
+.task-dropzone.hover{
+  height: 130px;
+  opacity: 1;
+  margin: 20px 0;
+  border: 3px dashed white;
 }
 .task-description{
   background-color: #ffdac7;
