@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import Task from "./task"
 
             
 function Column({column, columns, setColumns, tasks, setColumnToCreateTask, users, setTaskToEdit, searchRequest, setSearchRequest, draggable}) {
@@ -8,7 +9,7 @@ function Column({column, columns, setColumns, tasks, setColumnToCreateTask, user
     function dragStart(eve){
         eve.dataTransfer.setData('text/plain', column)
         setIsDrag(true)
-    }    
+    }
 
     function dragEnd(){
         setIsDrag(false)
@@ -62,20 +63,8 @@ function Column({column, columns, setColumns, tasks, setColumnToCreateTask, user
             >
                 <div className="column-header">{column}</div>
                 <ul className="column-body">
-                    {filteredTasks.map((e, j) => 
-                        <li className="task" 
-                            key={'task-'+column+'-'+j} 
-                            onClick={() => {
-                                setTaskToEdit(e)
-                            }}
-                        >
-                            <p className="task-description">{e.title}</p>                    
-                            <p className="task-assignee">{e.status}</p>
-                            <div className="task-box">
-                                <p className="task-deadline">🕒 {e?.deadline?.slice(0, 10)}</p>
-                                <img src={e?.user?.avatar} alt={e?.user?.name} title={e?.user?.name} className="task-image" />
-                            </div>
-                        </li>
+                    {filteredTasks.map((task, j) => 
+                        <Task key={'task-'+j} {...{setTaskToEdit, task}} />
                     )} 
                     <li className="task"
                         onClick={_ => 

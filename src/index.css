@@ -32,8 +32,7 @@ code {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  top: 30px;
-  right: 20px;
+  margin-right: 40px;
 }
 .user-image{
   margin-left: -5px;
