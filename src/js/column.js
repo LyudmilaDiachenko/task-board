@@ -73,14 +73,7 @@ function Column({column, columns, setColumns, tasks, setTasks, setColumnToCreate
                     {filteredTasks.map((task, j) => 
                         <Task key={'task-'+j} {...{tasks, setTasks, task, setTaskToEdit, itemToDrag, setItemToDrag}} />
                     )} 
-                    
-                    <li className="task"
-                        onClick={_ => 
-                            setColumnToCreateTask(column)
-                        }
-                    >
-                        Add new task
-                    </li>
+                    <Task {...{tasks, setTasks, task: {status: column}, itemToDrag, setItemToDrag, setColumnToCreateTask}} />
                 </ul>
             </div>
             <div 
