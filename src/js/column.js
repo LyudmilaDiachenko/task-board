@@ -2,7 +2,10 @@ import React, {useState} from "react";
 import Task from "./task"
 
             
-function Column({column, columns, setColumns, tasks, setTasks, setColumnToCreateTask, users, setTaskToEdit, searchRequest, setSearchRequest, draggable, itemToDrag, setItemToDrag}) {
+function Column({
+    column, columns, setColumns, tasks, setTasks, setColumnToCreateTask, users, setTaskToEdit, 
+    searchRequest, setSearchRequest, draggable, itemToDrag, setItemToDrag
+}) {
     const [isDrag, setIsDrag] = useState(false)
     const [isHover, setIsHover] = useState(false)
 
@@ -32,7 +35,6 @@ function Column({column, columns, setColumns, tasks, setTasks, setColumnToCreate
 
     function drop(eve){
         const columnToSort = eve.dataTransfer.getData('text/plain')
-        console.log(columnToSort)
         let newColumns = []
 
         columns.forEach((c, i) => {
@@ -46,9 +48,30 @@ function Column({column, columns, setColumns, tasks, setTasks, setColumnToCreate
                 newColumns.push(columnToSort)
             }
         })
-
         setIsHover(false)
         setColumns([...newColumns])
+    }
+
+    function checkInput(eve){
+        if (eve.keyCode === 13){
+            eve.target.blur()
+        }
+        if (eve.keyCode === 27){
+            eve.target.innerText = column;
+            eve.target.blur()
+        }
+
+    }   
+
+    function changeColumnName(eve, oldColumnName){
+        let newColumnName = eve.target.innerText.trim();
+        if (newColumnName) {
+            const newColumns = columns.map(c => c === oldColumnName ? newColumnName : c)
+            setColumns(newColumns)
+            setTasks(tasks.map(t => { 
+                return {...t, status: t.status === oldColumnName ? newColumnName : t.status}; 
+            }))
+        }
     }
 
     const filteredTasks = tasks
@@ -68,7 +91,14 @@ function Column({column, columns, setColumns, tasks, setTasks, setColumnToCreate
                 onDragStart={dragStart}
                 onDragEnd={dragEnd}
             >
-                <div className="column-header">{column}</div>
+                <div className="column-header" 
+                    contentEditable="true"
+                    suppressContentEditableWarning={true}
+                    onKeyDown={checkInput}
+                    onBlur={e => changeColumnName(e, column)}
+                >
+                    {column}
+                </div>
                 <ul className="column-body">
                     {filteredTasks.map((task, j) => 
                         <Task key={'task-'+j} {...{tasks, setTasks, task, setTaskToEdit, itemToDrag, setItemToDrag}} />
