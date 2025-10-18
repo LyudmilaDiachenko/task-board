@@ -201,6 +201,9 @@ code {
   padding: 10px;
   margin: 0 auto;
 }
+.add-column-plus{
+  margin-bottom: 20px;
+}
 .add-column-box label{
   display: block;
   opacity: 0;

@@ -54,11 +54,13 @@ function AddTask({tasks, setTasks, columnToCreateTask, setColumnToCreateTask, us
                     <label>
                         <input 
                             value={task?.deadline || new Date().toISOString().slice(0, 10)} 
-                            className="add-task-date" type="date" 
+                            className="add-task-date" 
+                            type="date"
+                            min={new Date().toISOString().slice(0, 10)}
                             onChange={e => setTask(
                                 {
                                     ...task, 
-                                    deadline: new Date(e.target.value).toISOString().slice(0, 10)
+                                    deadline: new Date(e.target.value).toISOString().slice(0, 10),
                                 }
                             )}
                         />

@@ -13,6 +13,9 @@ function AddColumn({columns, setColumns}) {
 
     return (
         <div className="add-column-box">
+            <div className="add-column-plus">
+                <div onClick={_ => setShowInput(!showInput)}>+</div> 
+            </div>
             <label className={showInput ? 'active' : ''}>
                 <input className="add-column-title"
                     type="text" 
@@ -22,9 +25,6 @@ function AddColumn({columns, setColumns}) {
                 />
                 <button className="add-column-btn" type="button" onClick={AddColumn}>Add column</button>
             </label>
-            <div className="add-column-box">
-                <div onClick={_ => setShowInput(!showInput)}>+</div> 
-            </div>
         </div>
     )
 }
