@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import Task from "./task"
 
             
@@ -8,6 +8,9 @@ function Column({
 }) {
     const [isDrag, setIsDrag] = useState(false)
     const [isHover, setIsHover] = useState(false)
+    const [isEditing, setIsEditing] = useState(false)
+    const editableRef = useRef(null)
+
 
     function dragStart(eve){
         eve.dataTransfer.setData('text/plain', column)
@@ -51,6 +54,22 @@ function Column({
         setIsHover(false)
         setColumns([...newColumns])
     }
+        
+    function enableEditing() {
+        setIsEditing(true)
+        setTimeout(_=>{
+            const el = editableRef.current
+            el.focus()
+                
+            const range = document.createRange()
+            range.selectNodeContents(el)
+            range.collapse(false)
+                
+            const sel = window.getSelection()
+            sel.removeAllRanges()
+            sel.addRange(range)
+        }, 10)
+    }
 
     function checkInput(eve){
         if (eve.keyCode === 13){
@@ -60,7 +79,6 @@ function Column({
             eve.target.innerText = column;
             eve.target.blur()
         }
-
     }   
 
     function changeColumnName(eve, oldColumnName){
@@ -71,9 +89,10 @@ function Column({
             setTasks(tasks.map(t => { 
                 return {...t, status: t.status === oldColumnName ? newColumnName : t.status}; 
             }))
+            setIsEditing(false)
         }
     }
-
+    
     const filteredTasks = tasks
     .filter((t) => t.status === column)
     .filter(e => {
@@ -91,9 +110,11 @@ function Column({
                 onDragStart={dragStart}
                 onDragEnd={dragEnd}
             >
-                <div className="column-header" 
-                    contentEditable="true"
+                <div className="column-header"
+                    ref={editableRef}
+                    contentEditable={isEditing}
                     suppressContentEditableWarning={true}
+                    onClick={enableEditing}
                     onKeyDown={checkInput}
                     onBlur={e => changeColumnName(e, column)}
                 >

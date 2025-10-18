@@ -9,12 +9,17 @@ function AddColumn({columns, setColumns}) {
         if (!title.trim()) return;
         setColumns([...columns, title])
         setTitle("");
+        setShowInput(!showInput)
     }
 
     return (
         <div className="add-column-box">
             <div className="add-column-plus">
-                <div onClick={_ => setShowInput(!showInput)}>+</div> 
+                <div 
+                    onClick={_ => setShowInput(!showInput)}
+                >
+                    +
+                </div> 
             </div>
             <label className={showInput ? 'active' : ''}>
                 <input className="add-column-title"
@@ -23,7 +28,13 @@ function AddColumn({columns, setColumns}) {
                     value={title} 
                     onChange={(e) => setTitle(e.target.value)} 
                 />
-                <button className="add-column-btn" type="button" onClick={AddColumn}>Add column</button>
+                <button 
+                    className="add-column-btn" 
+                    type="button" 
+                    onClick={AddColumn}
+                >
+                    Add column
+                </button>
             </label>
         </div>
     )
